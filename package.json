@@ -7,9 +7,12 @@
   "author": "Kristen Sundquist <kssundquist@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "eslint": "^5.15.3",
     "jest": "^24.5.0"
   }
 }

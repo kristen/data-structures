@@ -5,5 +5,6 @@ Data Structures
 - [ ] Stacks
 - [ ] Queues
 - [ ] Hash Tables
+- [ ] Options
 - [ ] Vectors / ArrayLists
 - [ ] Tries ???

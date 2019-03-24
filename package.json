@@ -13,7 +13,9 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.4.2",
     "eslint": "^5.15.3",
+    "eslint-plugin-import": "^2.16.0",
     "jest": "^24.5.0"
   },
   "jest": {

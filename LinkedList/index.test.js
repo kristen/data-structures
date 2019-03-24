@@ -3,20 +3,29 @@ import { Nil, List } from '.';
 describe('List', () => {
 	describe('Nil', () => {
 		describe('#head', () => {
-			it('throws an error', () => {
-				expect(Nil.head).toThrow();
+			it('returns Nil', () => {
+				expect(Nil.head()).toBe(Nil);
 			});
 		});
 		describe('#tail', () => {
-			it('throws an error', () => {
-				expect(Nil.tail).toThrow();
+			it('returns Nil', () => {
+				expect(Nil.tail()).toBe(Nil);
 			});
+		});
+		describe('#prepend', () => {
+			it('returns the list when the value is undefined', () => {
+				expect(Nil.prepend()).toBe(Nil);
+			});
+		});
+		it('returns a new list with that new value', () => {
+			const newValue = 0;
+			expect(Nil.prepend(newValue)).toEqual(List(newValue));
 		});
 	});
 	describe('List', () => {
 		describe('#head', () => {
-			it('throws an error when the list is empty', () => {
-				expect(List().head).toThrow();
+			it('returns Nil when the list is empty', () => {
+				expect(List().head()).toBe(Nil);
 			});
 			it('returns the first value of the list', () => {
 				const firstValue = 'value';
@@ -24,8 +33,8 @@ describe('List', () => {
 			});
 		});
 		describe('#tail', () => {
-			it('throws an error when there are 0 elements', () => {
-				expect(List().tail).toThrow();
+			it('returns Nil when there are 0 elements', () => {
+				expect(List().tail()).toBe(Nil);
 			});
 			it('returns Nil when there is 1 element in the list', () => {
 				expect(List('value').tail()).toBe(Nil);
@@ -33,6 +42,14 @@ describe('List', () => {
 			it('returns a new List with all elements except for the head', () => {
 				const list = List('value1', 'value2');
 				expect(list.tail()).toEqual(List('value2'));
+			});
+		});
+		describe('#prepend', () => {
+			it('returns the list when the value is undefined', () => {
+				expect(List(1).prepend()).toEqual(List(1));
+			});
+			it('inserts a value at the head of the list', () => {
+				expect(List(1,2,3).prepend(0)).toEqual(List(0,1,2,3));
 			});
 		});
 	});

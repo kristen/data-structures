@@ -2,10 +2,13 @@ export class NilListError extends Error {}
 
 class NilListClass {
 	head() {
-		throw new NilListError('no head on Nil');
+		return Nil;
 	}
 	tail() {
-		throw new NilListError('no tail on Nil');
+		return Nil;
+	}
+	prepend(value) {
+		return List(value);
 	}
 }
 export const Nil = new NilListClass();
@@ -30,6 +33,12 @@ class ListClass {
 	}
 	tail() {
 		return this._tail;
+	}
+	prepend(value) {
+		if (value === undefined) {
+			return this;
+		}
+		return new ListClass(value, this);
 	}
 }
 

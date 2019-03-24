@@ -10,11 +10,14 @@ class NilListClass {
 }
 export const Nil = new NilListClass();
 
-const constructList = (head, ...rest) => {
-	if (head === undefined) {
-		return Nil;
+const constructList = (items, acc) => {
+	const last = items[items.length - 1];
+	if (last === undefined) {
+		return acc;
 	}
-	return new ListClass(head, constructList(...rest));
+	const rest = items.slice(0, items.length - 1);
+	const tail = new ListClass(last, acc);
+	return constructList(rest, tail);
 };
 
 class ListClass {
@@ -30,4 +33,4 @@ class ListClass {
 	}
 }
 
-export const List = constructList;
+export const List = (...items) => constructList(items, Nil);

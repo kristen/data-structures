@@ -1,0 +1,9 @@
+{
+  "name": "data-structures",
+  "version": "0.0.1",
+  "description": "Library for data strucutres",
+  "main": "index.js",
+  "repository": "https://github.com/kristen/data-structures",
+  "author": "Kristen Sundquist <kssundquist@gmail.com>",
+  "license": "MIT"
+}

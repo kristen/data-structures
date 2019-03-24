@@ -1,21 +1,33 @@
-import { Option } from '../Option';
+export class NilListError extends Error {}
 
-/**
- * Node
- */
-class NodeClass {
-	constructor(value, next) {
-		this._value = value;
-		this._next = Option.fromNullable(next);
+class NilListClass {
+	head() {
+		throw new NilListError('no head on Nil');
 	}
+	tail() {
+		throw new NilListError('no tail on Nil');
+	}
+}
+export const Nil = new NilListClass();
 
-	get value() {
-		return this._value;
+const constructList = (head, ...rest) => {
+	if (head === undefined) {
+		return Nil;
 	}
-  
-	get next() {
-		return this._next;
+	return new ListClass(head, constructList(...rest));
+};
+
+class ListClass {
+	constructor(head, tail) {
+		this._head = head;
+		this._tail = tail;
+	}
+	head() {
+		return this._head;
+	}
+	tail() {
+		return this._tail;
 	}
 }
 
-export const Node = (value, next) => new NodeClass(value, next);
+export const List = constructList;

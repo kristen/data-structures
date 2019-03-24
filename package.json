@@ -7,8 +7,8 @@
   "author": "Kristen Sundquist <kssundquist@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "jest --coverage --config=jest.config.json",
+    "test:watch": "jest --watch --config=jest.config.json",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -17,21 +17,5 @@
     "eslint": "^5.15.3",
     "eslint-plugin-import": "^2.16.0",
     "jest": "^24.5.0"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "*.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "/node_modules/"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 100,
-        "branches": 100,
-        "functions": 100,
-        "lines": 100
-      }
-    }
   }
 }

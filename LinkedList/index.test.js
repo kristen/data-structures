@@ -1,24 +1,38 @@
-import { Node } from '.';
-import { None, Some } from '../Option';
+import { Nil, List } from '.';
 
-describe('LinkedList', () => {
-	describe('Node', () => {
-		describe('#value', () => {
-			it('stores a value', () => {
-				const value = 'Hi';
-				const node = Node(value);
-				expect(node.value).toBe(value);
+describe('List', () => {
+	describe('Nil', () => {
+		describe('#head', () => {
+			it('throws an error', () => {
+				expect(Nil.head).toThrow();
 			});
 		});
-		describe('#next', () => {
-			it('returns None when there is no next Node', () => {
-				const node = Node('value');
-				expect(node.next).toBe(None);
+		describe('#tail', () => {
+			it('throws an error', () => {
+				expect(Nil.tail).toThrow();
 			});
-			it('returns a Node when there is a next Node set', () => {
-				const next = Node('value2');
-				const node = Node('value1', next);
-				expect(node.next).toEqual(Some(next));
+		});
+	});
+	describe('List', () => {
+		describe('#head', () => {
+			it('throws an error when the list is empty', () => {
+				expect(List().head).toThrow();
+			});
+			it('returns the first value of the list', () => {
+				const firstValue = 'value';
+				expect(List(firstValue).head()).toEqual(firstValue);
+			});
+		});
+		describe('#tail', () => {
+			it('throws an error when there are 0 elements', () => {
+				expect(List().tail).toThrow();
+			});
+			it('returns Nil when there is 1 element in the list', () => {
+				expect(List('value').tail()).toBe(Nil);
+			});
+			it('returns a new List with all elements except for the head', () => {
+				const list = List('value1', 'value2');
+				expect(list.tail()).toEqual(List('value2'));
 			});
 		});
 	});

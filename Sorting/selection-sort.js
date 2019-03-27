@@ -3,13 +3,16 @@
  * O(n^2)
  */
 export const indexOfSmallest = (array) => {
-	var index = -1;
-	var smallestValue = array[0];
-	array.forEach((item, i) => {
-		if (item <= smallestValue) {
-			smallestValue = item;
-			index = i;
-		}
-	});
-	return index;
+	return indexOfSmallestRecursive(-1, 0, array[0], array);
+};
+
+const indexOfSmallestRecursive = (acc, i, smallestValue, array) => {
+	if (array && i > array.length) {
+		return acc;
+	}
+	if (array[i] <= smallestValue) {
+		return indexOfSmallestRecursive(i, i+1, array[i], array);
+	} else {
+		return indexOfSmallestRecursive(acc, i+1, smallestValue, array);
+	}
 };

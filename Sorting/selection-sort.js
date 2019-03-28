@@ -18,18 +18,15 @@ const indexOfSmallestRecursive = (acc, i, smallestValue, array) => {
 };
 
 export const sort = (array) => {
-	const sortedArray = [];
-	const initialArrayLength = array.length;
-	for (var i = 0; i < initialArrayLength; i++) {
-		// find index of smallest
-		const smallestElementIndex = indexOfSmallest(array);
-		const smallestElement = array[smallestElementIndex];
-		//put element in new array in next index spot
-		sortedArray[i] = smallestElement;
-		// remove from other array
-		array = [...array.slice(0, smallestElementIndex), ...array.slice(smallestElementIndex + 1)];
-	// repeat until no more elements
+	return sortRecursive(array, []);
+};
+
+const sortRecursive = (array, sortedArray) => {
+	if (array && array.length === 0) {
+		return sortedArray;
 	}
-	// return array
-	return sortedArray;
+	const smallestElementIndex = indexOfSmallest(array);
+	return sortRecursive(
+		[...array.slice(0, smallestElementIndex), ...array.slice(smallestElementIndex + 1)],
+		[...sortedArray, array[smallestElementIndex]]);
 };

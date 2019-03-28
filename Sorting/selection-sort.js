@@ -18,15 +18,25 @@ const indexOfSmallestRecursive = (acc, i, smallestValue, array) => {
 };
 
 export const sort = (array) => {
-	return sortRecursive(array, []);
+	const sortedArray = [];
+	const copy = [...array];
+	for (var i = 0; i < array.length; i++) {
+		const [smallestElement] = copy.splice(indexOfSmallest(copy), 1);
+		sortedArray[i] = smallestElement;
+	}
+	return sortedArray;
 };
 
-const sortRecursive = (array, sortedArray) => {
+const sortRecursiveLoop = (array, sortedArray) => {
 	if (array && array.length === 0) {
 		return sortedArray;
 	}
-	const smallestElementIndex = indexOfSmallest(array);
-	return sortRecursive(
-		[...array.slice(0, smallestElementIndex), ...array.slice(smallestElementIndex + 1)],
-		[...sortedArray, array[smallestElementIndex]]);
+	const [smallestElement] = array.splice(indexOfSmallest(array), 1);
+	return sortRecursiveLoop(
+		[...array],
+		[...sortedArray, smallestElement]);
+};
+
+export const sortRecursive = (array) => {
+	return sortRecursiveLoop([...array], []);
 };

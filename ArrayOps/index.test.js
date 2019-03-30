@@ -99,11 +99,11 @@ describe('ArrayOps', () => {
 	describe('#max', () => {
 		it('returns undefined when given undefined', () => {
 			const result = max();
-			expect(result).toBe(undefined);
+			expect(result).toBeUndefined();
 		});
 		it('returns undefined when there are no values in the array', () => {
 			const result = max([]);
-			expect(result).toBe(undefined);
+			expect(result).toBeUndefined();
 		});
 		it('returns the largest element in the array', () => {
 			const array = [1,2,3,2];

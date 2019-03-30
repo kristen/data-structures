@@ -1,3 +1,5 @@
+import { None, Some } from '../Option';
+
 const mapRecursive = (arr, f, result) => {
 	if (arr.length === 0) {
 		return result;
@@ -41,4 +43,24 @@ export const max = (arr) => {
 		const [head] = copy.splice(0, 1);
 		return reduce(copy, maxValue, head);
 	}
+};
+
+const binarySearchRecursive = (arr, x, minIndex, maxIndex) => {
+	if (minIndex > maxIndex) {
+		return None;
+	}
+	const midIndex = Math.round((minIndex + maxIndex)/2);
+	if (x === arr[midIndex]) {
+		return Some(midIndex);
+	} else if (x < arr[midIndex]) {
+		return binarySearchRecursive(arr, x, minIndex, midIndex - 1);
+	}
+	return binarySearchRecursive(arr, x, midIndex + 1, maxIndex);
+};
+
+export const binarySearch = (arr, x) => {
+	if (arr && arr.length) {
+		return binarySearchRecursive(arr, x, 0, arr.length);
+	}
+	return None;
 };

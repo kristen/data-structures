@@ -1,4 +1,5 @@
-import { map, reduce, sum, count, max } from '.';
+import { map, reduce, sum, count, max, binarySearch } from '.';
+import { None, Some } from '../Option';
 
 describe('ArrayOps', () => {
 	describe('#map', () => {
@@ -107,6 +108,22 @@ describe('ArrayOps', () => {
 		it('returns the largest element in the array', () => {
 			const array = [1,2,3,2];
 			expect(max(array)).toBe(3);
+		});
+	});
+	describe('#binarySearch', () => {
+		it('returns None with a undefined array', () => {
+			expect(binarySearch()).toBe(None);
+		});
+		it('returns None with an empty array', () => {
+			expect(binarySearch([])).toBe(None);
+		});
+		it('returns Some(index) when it finds the value in an array', () => {
+			const arr = [1,2,3,4,5,6];
+			expect(binarySearch(arr, 2)).toEqual(Some(1));
+		});
+		it('returns None when it does not find the value in the array', () => {
+			const arr = [1,2,3,4,5,6];
+			expect(binarySearch(arr, 7)).toBe(None);
 		});
 	});
 });

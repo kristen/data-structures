@@ -11,3 +11,8 @@
 - [ ] Vectors / ArrayLists
 - [ ] StringBuilder
 - [ ] Tries ???
+
+
+# Deploying
+
+`yarn version`

@@ -1,4 +1,6 @@
-Data Structures
+[![codecov](https://codecov.io/gh/kristen/data-structures/branch/master/graph/badge.svg)](https://codecov.io/gh/kristen/data-structures)
+
+# Data Structures
 
 - [ ] Linked Lists
 - [ ] Binary Trees
@@ -7,4 +9,5 @@ Data Structures
 - [ ] Hash Tables
 - [ ] Options
 - [ ] Vectors / ArrayLists
+- [ ] StringBuilder
 - [ ] Tries ???

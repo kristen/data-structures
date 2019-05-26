@@ -1,19 +1,24 @@
 {
-  "name": "data-structures",
-  "version": "0.0.1",
-  "description": "Library for data strucutres",
+  "name": "@kristen/data-structures",
+  "version": "0.0.2",
+  "description": "JS Library for data strucutres",
   "main": "index.js",
   "repository": "https://github.com/kristen/data-structures",
   "author": "Kristen Sundquist <kssundquist@gmail.com>",
+  "homepage": "https://github.com/kristen/data-structures",
   "license": "MIT",
   "scripts": {
-    "test": "jest --coverage --config=jest.config.json",
+    "build": "yarn lint && babel ./src -d ./lib",
+    "test": "jest --coverage --config=jest.config.json && codecov",
     "test:watch": "jest --watch --config=jest.config.json",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/preset-env": "^7.4.2",
+    "codecov": "^3.5.0",
     "eslint": "^5.15.3",
     "eslint-plugin-import": "^2.16.0",
     "jest": "^24.5.0"

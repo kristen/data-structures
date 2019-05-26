@@ -1,9 +1,6 @@
 {
   "collectCoverageFrom": [
-    "*.js"
-  ],
-  "coveragePathIgnorePatterns": [
-    "/node_modules/"
+    "**/src/**"
   ],
   "coverageThreshold": {
     "global": {

@@ -1,5 +1,14 @@
 language: node_js
 node_js:
-- "10"
+- node
 before_deploy:
 - yarn build
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: kssundquist@gmail.com
+  api_key:
+    secure: Cn3F2YjSHioDawC4/HrRGidV+77iMWHMHduTGO/2Q21TtU1gWEmxZS9Ifwpl977zNJsrb56YZlZiqw8ZCAAUz5rwnGTV+GFBz+c9RV4RG5UCVjPWmkE/7gkMPJbVXvHPSMYILDU+MteBswtPX3daCxHs0mpMebih4ncdTdpk/Zx0hPhs1hsiXs/KW9n95XtKRjdtLyJqtq4WFsypbYoYHufXbWBktYI/pYhdA90AeQTKN11MnDMfADpQAs5Tnle8MAhRswh3uxErj4YnNLLdFVGssJVWytRyUCxDwmKUho12JtoAKBvwcL9qSNJvx2J8Xsg6JvOBhdvoVwk68EBECqquoRjra4Uofa2U76oGL3H8yRuEIVLXyZk8Q8/u4QFHuL9xE2XDoZc1qHp7LXi7TL22a4nE5rouGlcLF7Ioz+JaPZgLT26WUVRU0l/I9Dx+yzspuykNNHsAiK7RdW5nHJu0eZgZFw85ftyfRSHPmWnIpsUWTuShCN+PNIBVc6w8G8pvcdf2IF7+UgjWiBzWdRTq8z1CwoSxDNyahjeA6RmWdokTYU2xx7kG9oNDAjPKl1eJ4o8OH8mZ7C5Qt9EXSgw2aTGEQR2srF5dqnnYK1nHAOr31Cp1Gtawh9e4eCPeX69qNsCK2QwN5d8csfsFa3iexJiUvdHeGWFebCrVcss=
+  on:
+    tags: true
+    repo: kristen/data-structures

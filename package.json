@@ -8,7 +8,7 @@
   "homepage": "https://github.com/kristen/data-structures",
   "license": "MIT",
   "scripts": {
-    "build": "yarn lint && babel ./src -d ./lib",
+    "build": "yarn lint && babel ./src -d ./lib --ignore '**/*.test.js'",
     "test": "jest --coverage --config=jest.config.json && codecov",
     "test:watch": "jest --watch --config=jest.config.json",
     "lint": "eslint ./src",

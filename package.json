@@ -1,6 +1,6 @@
 {
   "name": "@kristen/data-structures",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "JS Library for data strucutres",
   "main": "lib/index.js",
   "repository": "https://github.com/kristen/data-structures",

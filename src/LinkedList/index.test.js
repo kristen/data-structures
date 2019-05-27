@@ -16,10 +16,15 @@ describe('List', () => {
 			it('returns the list when the value is undefined', () => {
 				expect(Nil.prepend()).toBe(Nil);
 			});
+			it('returns a new list with that new value', () => {
+				const newValue = 0;
+				expect(Nil.prepend(newValue)).toEqual(List(newValue));
+			});
 		});
-		it('returns a new list with that new value', () => {
-			const newValue = 0;
-			expect(Nil.prepend(newValue)).toEqual(List(newValue));
+		describe('#toString', () => {
+			it('returns a string representation', () => {
+				expect(Nil.toString()).toEqual('Nil');
+			});
 		});
 	});
 	describe('List', () => {
@@ -50,6 +55,17 @@ describe('List', () => {
 			});
 			it('inserts a value at the head of the list', () => {
 				expect(List(1,2,3).prepend(0)).toEqual(List(0,1,2,3));
+			});
+		});
+		describe('#toString', () => {
+			it('returns a string representation', () => {
+				expect(List(1).toString()).toEqual('List(1)');
+			});
+			it('returns a string representation', () => {
+				expect(List(1,2).toString()).toEqual('List(1,2)');
+			});
+			it('returns a string representation', () => {
+				expect(List(1,2,3,4).toString()).toEqual('List(1,2,3,4)');
 			});
 		});
 	});

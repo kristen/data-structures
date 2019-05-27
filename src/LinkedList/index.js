@@ -11,6 +11,10 @@ class NilListClass {
 		return List(value);
 	}
 }
+const nilToString = () => {
+	return 'Nil';
+};
+NilListClass.prototype.toString = nilToString;
 export const Nil = new NilListClass();
 
 const constructList = (items, acc) => {
@@ -41,5 +45,15 @@ class ListClass {
 		return new ListClass(value, this);
 	}
 }
-
+ListClass.prototype.toString = function listToString() {
+	const loop = (acc, rest) => {
+		if (rest.head() === Nil) {
+			return acc;
+		} else {
+			return loop(acc.concat([rest.head()]), rest.tail());
+		}
+	};
+	const listItems = loop([], this);
+	return `List(${listItems.join(',')})`;
+};
 export const List = (...items) => constructList(items, Nil);

@@ -1,10 +1,16 @@
 import { Nil, List } from '.';
+import { None } from '../Option';
 
 describe('List', () => {
 	describe('Nil', () => {
 		describe('#head', () => {
-			it('returns Nil', () => {
-				expect(Nil.head()).toBe(Nil);
+			it('throws NilListError', () => {
+				expect(Nil.head).toThrow();
+			});
+		});
+		describe('#headOption', () => {
+			it('returns None', () => {
+				expect(Nil.headOption()).toBe(None);
 			});
 		});
 		describe('#tail', () => {
@@ -29,8 +35,8 @@ describe('List', () => {
 	});
 	describe('List', () => {
 		describe('#head', () => {
-			it('returns Nil when the list is empty', () => {
-				expect(List().head()).toBe(Nil);
+			it('throws when the list is empty', () => {
+				expect(List().head).toThrow();
 			});
 			it('returns the first value of the list', () => {
 				const firstValue = 'value';

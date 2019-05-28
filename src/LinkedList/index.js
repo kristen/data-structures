@@ -1,8 +1,13 @@
+import { Option, None } from '../Option';
+
 export class NilListError extends Error {}
 
 class NilListClass {
 	head() {
-		return Nil;
+		throw new NilListError('Nil.head is not allowed');
+	}
+	headOption() {
+		return None;
 	}
 	tail() {
 		return Nil;
@@ -35,6 +40,9 @@ class ListClass {
 	head() {
 		return this._head;
 	}
+	headOption() {
+		return Option.fromNullable(this._head);
+	}
 	tail() {
 		return this._tail;
 	}
@@ -47,7 +55,7 @@ class ListClass {
 }
 ListClass.prototype.toString = function listToString() {
 	const loop = (acc, rest) => {
-		if (rest.head() === Nil) {
+		if (rest.headOption() === None) {
 			return acc;
 		} else {
 			return loop(acc.concat([rest.head()]), rest.tail());

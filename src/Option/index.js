@@ -7,8 +7,15 @@ class NoneClass {
 	get() {
 		throw new NoneOptionError('None.get is not allowed');
 	}
+	getOrElse(defaultValue) {
+		return defaultValue;
+	}
 	isDefined() {
 		return false;
+	}
+	// eslint-disable-next-line no-unused-vars
+	map(_f) {
+		return None;
 	}
 }
 
@@ -25,8 +32,15 @@ class SomeClass {
 	get() {
 		return this._value;
 	}
+	// eslint-disable-next-line no-unused-vars
+	getOrElse(_defaultValue) {
+		return this._value;
+	}
 	isDefined() {
 		return true;
+	}
+	map(f) {
+		return Some(f(this._value));
 	}
 }
 

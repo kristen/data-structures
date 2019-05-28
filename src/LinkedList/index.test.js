@@ -8,6 +8,11 @@ describe('List', () => {
 				expect(Nil.isEmpty()).toBe(true);
 			});
 		});
+		describe('#nonEmpty', () => {
+			it('returns false', () => {
+				expect(Nil.nonEmpty()).toBe(false);
+			});
+		});
 		describe('#head', () => {
 			it('throws NilListError', () => {
 				expect(Nil.head).toThrow();
@@ -48,6 +53,17 @@ describe('List', () => {
 			});
 			it('returns false when nonEmpty', () => {
 				expect(List(1,2,3,4).isEmpty()).toBe(false);
+			});
+		});
+		describe('#nonEmpty', () => {
+			it('returns false when empty', () => {
+				expect(List().nonEmpty()).toBe(false);
+			});
+			it('returns true when nonEmpty', () => {
+				expect(List(1).nonEmpty()).toBe(true);
+			});
+			it('returns true when nonEmpty', () => {
+				expect(List(1,2,3,4).nonEmpty()).toBe(true);
 			});
 		});
 		describe('#head', () => {

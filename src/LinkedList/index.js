@@ -6,6 +6,9 @@ class NilListClass {
 	isEmpty() {
 		return true;
 	}
+	nonEmpty() {
+		return !this.isEmpty();
+	}
 	head() {
 		throw new NilListError('Nil.head is not allowed');
 	}
@@ -42,6 +45,9 @@ class ListClass {
 	}
 	isEmpty() {
 		return false;
+	}
+	nonEmpty() {
+		return !this.isEmpty();
 	}
 	head() {
 		return this._head;

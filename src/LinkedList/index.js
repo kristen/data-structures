@@ -3,6 +3,9 @@ import { Option, None } from '../Option';
 export class NilListError extends Error {}
 
 class NilListClass {
+	isEmpty() {
+		return true;
+	}
 	head() {
 		throw new NilListError('Nil.head is not allowed');
 	}
@@ -36,6 +39,9 @@ class ListClass {
 	constructor(head, tail) {
 		this._head = head;
 		this._tail = tail;
+	}
+	isEmpty() {
+		return false;
 	}
 	head() {
 		return this._head;

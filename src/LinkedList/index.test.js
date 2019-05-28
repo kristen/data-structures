@@ -3,6 +3,11 @@ import { None } from '../Option';
 
 describe('List', () => {
 	describe('Nil', () => {
+		describe('#isEmtpy', () => {
+			it('returns true', () => {
+				expect(Nil.isEmpty()).toBe(true);
+			});
+		});
 		describe('#head', () => {
 			it('throws NilListError', () => {
 				expect(Nil.head).toThrow();
@@ -34,6 +39,17 @@ describe('List', () => {
 		});
 	});
 	describe('List', () => {
+		describe('#isEmtpy', () => {
+			it('returns true when empty', () => {
+				expect(List().isEmpty()).toBe(true);
+			});
+			it('returns false when nonEmpty', () => {
+				expect(List(1).isEmpty()).toBe(false);
+			});
+			it('returns false when nonEmpty', () => {
+				expect(List(1,2,3,4).isEmpty()).toBe(false);
+			});
+		});
 		describe('#head', () => {
 			it('throws when the list is empty', () => {
 				expect(List().head).toThrow();

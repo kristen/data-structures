@@ -38,6 +38,13 @@ describe('Stack', () => {
 			expect(result).toEqual(Some(1));
 			expect(stack.top()).toEqual(None);
 		});
+		it('can pop multiple times', () => {
+			const stack = Stack();
+			stack.push(1);
+			stack.push(2);
+			expect(stack.pop()).toEqual(Some(2));
+			expect(stack.pop()).toEqual(Some(1));
+		});
 	});
 	describe('#isEmpty', () => {
 		it('returns true when the stack is empty', () => {

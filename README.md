@@ -2,12 +2,12 @@
 
 # Data Structures
 
-- [ ] Linked Lists
+- [x] Linked Lists
 - [ ] Binary Trees
 - [ ] Stacks
 - [ ] Queues
 - [ ] Hash Tables
-- [ ] Options
+- [x] Options
 - [ ] Vectors / ArrayLists
 - [ ] StringBuilder
 - [ ] Tries ???

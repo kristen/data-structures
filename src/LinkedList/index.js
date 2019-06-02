@@ -66,17 +66,17 @@ class ListClass {
 	}
 }
 ListClass.prototype.toString = function listToString() {
-	const loop = (acc, hash, rest) => {
+	const loop = (acc, hash, index, rest) => {
 		if (rest.headOption() === None) {
 			return acc;
 		} else if (hash.has(rest)) {
-			return acc.concat([`loop(${rest.head()})`]);
+			return acc.concat([`loop([${hash.get(rest)}])`]);
 		} else {
-			hash.set(rest);
-			return loop(acc.concat([rest.head()]), hash, rest.tail());
+			hash.set(rest, index);
+			return loop(acc.concat([rest.head()]), hash, index+1, rest.tail());
 		}
 	};
-	const listItems = loop([], new Map(), this);
+	const listItems = loop([], new Map(), 0, this);
 	return `List(${listItems.join(',')})`;
 };
 export const List = (...items) => constructList(items, Nil);

@@ -119,7 +119,7 @@ describe('List', () => {
 				}
 				tail._tail = p;
 				const result = list.toString();
-				expect(result).toEqual('List(1,2,3,4,5,6,loop(3))');
+				expect(result).toEqual('List(1,2,3,4,5,6,loop([2]))');
 			});
 		});
 	});

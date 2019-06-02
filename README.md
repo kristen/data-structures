@@ -5,7 +5,7 @@
 - [x] Linked Lists
 - [ ] Binary Trees
 - [x] Stacks
-- [ ] Queues
+- [x] Queues
 - [ ] Hash Tables
 - [x] Options
 - [ ] Vectors / ArrayLists

@@ -51,12 +51,12 @@ describe('Stack', () => {
 			const stack = Stack();
 			expect(stack.isEmpty()).toBe(true);
 		});
-		it('returns false when the stack is empty', () => {
+		it('returns false when the stack has elements', () => {
 			const stack = Stack();
 			stack.push(1);
 			expect(stack.isEmpty()).toBe(false);
 		});
-		it('returns false when the stack is empty', () => {
+		it('returns false when the stack has elements', () => {
 			const stack = Stack();
 			stack.push(1);
 			stack.push();

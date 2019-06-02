@@ -9,12 +9,13 @@ class QueueClass {
 		return this._start.isEmpty();
 	}
 	add(value) {
-		this._end = List(value);
+		const node = List(value);
 		if (this._start.isEmpty()) {
-			this._start = this._end;
+			this._start = node;
 		} else {
-			this._start._tail = this._end;
+			this._end._tail = node;
 		}
+		this._end = node;
 	}
 	remove() {
 		const value = this._start.headOption();

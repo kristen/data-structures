@@ -31,6 +31,14 @@ describe('Queue', () => {
 			queue.add(1);
 			expect(queue.peek()).toEqual(Some(1));
 		});
+		it('can add more than one value to the queue', () => {
+			const queue = Queue();
+			queue.add(1);
+			queue.add(2);
+			expect(queue.peek()).toEqual(Some(1));
+			expect(queue.remove()).toEqual(Some(1));
+			expect(queue.peek()).toEqual(Some(2));
+		});
 	});
 	describe('#remove', () => {
 		it('removes value from the start of the queue', () => {
@@ -40,6 +48,18 @@ describe('Queue', () => {
 			const value = queue.remove();
 			expect(queue.peek()).toBe(None);
 			expect(value).toEqual(Some(1));
+		});
+		it('is empty when you remove all elements', () => {
+			const queue = Queue();
+			queue.add(1);
+			expect(queue.peek()).toEqual(Some(1));
+			expect(queue.isEmpty()).toEqual(false);
+			expect(queue.remove()).toEqual(Some(1));
+			expect(queue.isEmpty()).toEqual(true);
+			queue.add(2);
+			expect(queue.peek()).toEqual(Some(2));
+			expect(queue.remove()).toEqual(Some(2));
+			expect(queue.isEmpty()).toEqual(true);
 		});
 	});
 });

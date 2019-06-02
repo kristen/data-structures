@@ -1,20 +1,28 @@
-import { None, Some, Option } from '../Option';
+import { Option } from '../Option';
 
-function StackClass(items) {
-	var _top = items._length - 1;
-	var _stack = items;
+class StackClass {
+	constructor() {
+		this._stack = [];
+	}
 
-	this.top = () => {
-		return Option.fromNullable(_stack[_top]);
-	};
+	top() {
+		const top = this._stack[this._stack.length - 1];
+		return Option.fromNullable(top);
+	}
 
-	this.push = (value) => {
-		if (value !== undefined) {
-			_top = _top + 1;
-			_stack[_top] = value;
-		}
-	};
+	push(value) {
+		this._stack[this._stack.length] = value;
+	}
 
+	pop() {
+		const top = this._stack[this._stack.length - 1];
+		this._stack[this._stack.length - 1] = undefined;
+		return Option.fromNullable(top);
+	}
+
+	isEmpty() {
+		return this._stack.length === 0;
+	}
 }
 
-export const Stack = (...items) => new StackClass(items);
+export const Stack = () => new StackClass();

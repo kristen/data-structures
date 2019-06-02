@@ -18,6 +18,11 @@ describe('Option', () => {
 				expect(None.isDefined()).toBe(false);
 			});
 		});
+		describe('#isEmpty', () => {
+			it('returns true', () => {
+				expect(None.isEmpty()).toBe(true);
+			});
+		});
 		describe('#map', () => {
 			it('returns None', () => {
 				expect(None.map(value => value + 1)).toEqual(None);
@@ -40,6 +45,11 @@ describe('Option', () => {
 		describe('#isDefined', () => {
 			it('returns true', () => {
 				expect(Some('value').isDefined()).toBe(true);
+			});
+		});
+		describe('#isEmpty', () => {
+			it('returns false', () => {
+				expect(Some('value').isEmpty()).toBe(false);
 			});
 		});
 		describe('#map', () => {

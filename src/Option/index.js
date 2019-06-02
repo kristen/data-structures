@@ -13,6 +13,9 @@ class NoneClass {
 	isDefined() {
 		return false;
 	}
+	isEmpty() {
+		return true;
+	}
 	// eslint-disable-next-line no-unused-vars
 	map(_f) {
 		return None;
@@ -39,6 +42,9 @@ class SomeClass {
 	isDefined() {
 		return true;
 	}
+	isEmpty() {
+		return false;
+	}
 	map(f) {
 		return Some(f(this._value));
 	}
@@ -52,7 +58,7 @@ export const Some = (value) => new SomeClass(value);
 
 export class Option {
 	static fromNullable(maybeValue) {
-		if(maybeValue === null || maybeValue === undefined) {
+		if (maybeValue === null || maybeValue === undefined) {
 			return None;
 		}
 		return Some(maybeValue);

@@ -105,6 +105,22 @@ describe('List', () => {
 			it('returns a string representation', () => {
 				expect(List(1,2,3,4).toString()).toEqual('List(1,2,3,4)');
 			});
+			it('handles circular linked lists', () => {
+				const list = List(1,2,3,4,5,6);
+				let p = list;
+				let tail = list;
+				let i = 0;
+				while (tail.tail().nonEmpty()) {
+					tail = tail.tail();
+					if (i < 2) {
+						i++;
+						p = p.tail();
+					}
+				}
+				tail._tail = p;
+				const result = list.toString();
+				expect(result).toEqual('List(1,2,3,4,5,6,loop(3))');
+			});
 		});
 	});
 });

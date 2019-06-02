@@ -1,25 +1,28 @@
-import { Option } from '../Option';
+import { List, Nil } from '../LinkedList';
 
 class QueueClass {
 	constructor() {
-		this._queue = [];
-		this._start = -1;
-		this._end = -1;
+		this._start = Nil;
+		this._end = Nil;
 	}
 	isEmpty() {
-		return this._start === this._end;
+		return this._start.isEmpty();
 	}
 	add(value) {
-		this._end = this._end + 1;
-		this._queue[this._end] = value;
+		this._end = List(value);
+		if (this._start.isEmpty()) {
+			this._start = this._end;
+		} else {
+			this._start._tail = this._end;
+		}
 	}
 	remove() {
-		this._start = this._start + 1;
-		const value = this._queue[this._start];
-		return Option.fromNullable(value);
+		const value = this._start.headOption();
+		this._start = this._start.tail();
+		return value;
 	}
 	peek() {
-		return Option.fromNullable(this._queue[this._start + 1]);
+		return this._start.headOption();
 	}
 }
 

@@ -28,6 +28,12 @@ describe('Option', () => {
 				expect(None.map(value => value + 1)).toEqual(None);
 			});
 		});
+		describe('#exists', () => {
+			it('returns false because there is no value to compare to', () => {
+				const f = v => v === 1;
+				expect(None.exists(f)).toEqual(false);
+			});
+		});
 	});
 	describe('Some', () => {
 		describe('#get', () => {
@@ -58,6 +64,20 @@ describe('Option', () => {
 				const f = v => v + 1;
 				const expected = f(value);
 				expect(Some(value).map(f)).toEqual(Some(expected));
+			});
+		});
+		describe('#exists', () => {
+			it('returns true when f(value) returns true', () => {
+				const value = 1;
+				const f = v => v === 1;
+				const expected = f(value);
+				expect(Some(value).exists(f)).toEqual(expected);
+			});
+			it('returns false when f(value) returns false', () => {
+				const value = 1;
+				const f = v => v === 2;
+				const expected = f(value);
+				expect(Some(value).exists(f)).toEqual(expected);
 			});
 		});
 	});

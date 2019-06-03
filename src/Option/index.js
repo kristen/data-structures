@@ -25,6 +25,10 @@ class NoneClass {
 	map(_f) {
 		return None;
 	}
+	// eslint-disable-next-line no-unused-vars
+	exists(_f) {
+		return false;
+	}
 }
 
 export const None = new NoneClass();
@@ -52,6 +56,9 @@ class SomeClass {
 	}
 	map(f) {
 		return Some(f(this._value));
+	}
+	exists(f) {
+		return f(this._value);
 	}
 }
 

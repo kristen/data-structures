@@ -1,6 +1,11 @@
 import { Option, None } from '../Option';
 
-export class NilListError extends Error {}
+export class NilListError extends Error {
+	constructor(message) {
+		super(message);
+		this.name = 'NilListError';
+	}
+}
 
 class NilListClass {
 	isEmpty() {

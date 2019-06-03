@@ -1,4 +1,9 @@
-class NoneOptionError extends Error {}
+class NoneOptionError extends Error {
+	constructor(message) {
+		super(message);
+		this.name = 'NoneOptionError';
+	}
+}
 
 /**
  * None

@@ -3,7 +3,7 @@ import { Option } from '../Option';
 export class StackClass {
 	constructor() {
 		this._stack = [];
-		this._topIndex = this._stack.length - 1;
+		this._topIndex = - 1;
 	}
 
 	top() {
@@ -12,13 +12,11 @@ export class StackClass {
 	}
 
 	push(value) {
-		this._topIndex++;
-		this._stack[this._topIndex] = value;
+		this._stack[++this._topIndex] = value;
 	}
 
 	pop() {
-		const top = this._stack[this._topIndex];
-		this._topIndex --;
+		const top = this._stack[this._topIndex--];
 		return Option.fromNullable(top);
 	}
 

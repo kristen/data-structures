@@ -1,4 +1,4 @@
-import { Option } from '../Option';
+import { Option, None } from '../Option';
 
 export class StackClass {
 	constructor() {
@@ -7,8 +7,8 @@ export class StackClass {
 	}
 
 	top() {
-		const top = this._stack[this._topIndex];
-		return Option.fromNullable(top);
+		if (this._topIndex < 0) return None;
+		return Option.fromNullable(this._stack[this._topIndex]);
 	}
 
 	push(value) {
@@ -16,12 +16,15 @@ export class StackClass {
 	}
 
 	pop() {
-		const top = this._stack[this._topIndex--];
-		return Option.fromNullable(top);
+		if (this._topIndex < 0) return None;
+		const value = this._stack[this._topIndex];
+		this._stack[this._topIndex] = undefined;
+		this._topIndex--;
+		return Option.fromNullable(value);
 	}
 
 	isEmpty() {
-		return this._stack.length === 0;
+		return this._topIndex < 0;
 	}
 }
 

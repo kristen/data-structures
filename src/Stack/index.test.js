@@ -45,6 +45,12 @@ describe('Stack', () => {
 			expect(stack.pop()).toEqual(Some(2));
 			expect(stack.pop()).toEqual(Some(1));
 		});
+		it('removes the underlying value from the stack', () => {
+			const stack = Stack();
+			stack.push(1);
+			stack.pop();
+			expect(stack._stack[0]).toBeUndefined();
+		});
 	});
 	describe('#isEmpty', () => {
 		it('returns true when the stack is empty', () => {
@@ -61,6 +67,12 @@ describe('Stack', () => {
 			stack.push(1);
 			stack.push();
 			expect(stack.isEmpty()).toBe(false);
+		});
+		it('returns true after you remove all elements', () => {
+			const stack = Stack();
+			stack.push(1);
+			stack.pop();
+			expect(stack.isEmpty()).toBe(true);
 		});
 	});
 });

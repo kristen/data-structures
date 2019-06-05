@@ -34,6 +34,11 @@ describe('Option', () => {
 				expect(None.exists(f)).toEqual(false);
 			});
 		});
+		describe('#toString', () => {
+			it('returns None', () => {
+				expect(None.toString()).toEqual('None');
+			});
+		});
 	});
 	describe('Some', () => {
 		describe('#get', () => {
@@ -78,6 +83,11 @@ describe('Option', () => {
 				const f = v => v === 2;
 				const expected = f(value);
 				expect(Some(value).exists(f)).toEqual(expected);
+			});
+		});
+		describe('#toString', () => {
+			it('returns Some(value)', () => {
+				expect(Some(1).toString()).toEqual('Some(1)');
 			});
 		});
 	});

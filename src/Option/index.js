@@ -30,6 +30,9 @@ class NoneClass {
 		return false;
 	}
 }
+NoneClass.prototype.toString = () => {
+	return 'None';
+};
 
 export const None = new NoneClass();
 
@@ -61,6 +64,9 @@ class SomeClass {
 		return f(this._value);
 	}
 }
+SomeClass.prototype.toString = function someToString() {
+	return `Some(${this._value})`;
+};
 
 export const Some = (value) => new SomeClass(value);
 

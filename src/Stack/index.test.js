@@ -75,4 +75,35 @@ describe('Stack', () => {
 			expect(stack.isEmpty()).toBe(true);
 		});
 	});
+	describe('#size', () => {
+		it('returns the size', () => {
+			expect(Stack().size()).toBe(0);
+		});
+		it('returns the size', () => {
+			const stack = Stack();
+			stack.push(1);
+			expect(stack.size()).toBe(1);
+		});
+		it('returns the size', () => {
+			const stack = Stack();
+			stack.push(1);
+			stack.pop();
+			expect(stack.size()).toBe(0);
+		});
+		it('returns the size', () => {
+			const stack = Stack();
+			stack.push(1);
+			stack.pop();
+			stack.pop();
+			expect(stack.size()).toBe(0);
+		});
+		it('returns the size', () => {
+			const stack = Stack();
+			const expectedSize = 13;
+			for(let i = 0; i < expectedSize; i++) {
+				stack.push(i);
+			}
+			expect(stack.size()).toBe(expectedSize);
+		});
+	});
 });

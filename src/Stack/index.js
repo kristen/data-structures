@@ -26,6 +26,10 @@ export class StackClass {
 	isEmpty() {
 		return this._topIndex < 0;
 	}
+
+	size() {
+		return this._topIndex + 1;
+	}
 }
 
 export const Stack = () => new StackClass();

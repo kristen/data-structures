@@ -32,4 +32,8 @@ export class StackClass {
 	}
 }
 
+StackClass.prototype.toString = function() {
+	return `[${this._stack.join(',')}`;
+};
+
 export const Stack = () => new StackClass();

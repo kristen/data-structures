@@ -33,7 +33,7 @@ export class StackClass {
 }
 
 StackClass.prototype.toString = function() {
-	return `[${this._stack.join(',')}`;
+	return `[${this._stack.filter((v, i) => i <= this._topIndex).join(',')}`;
 };
 
 export const Stack = () => new StackClass();

@@ -114,6 +114,12 @@ describe('Stack', () => {
 		it('returns a string representation of a stack', () => {
 			const stack = Stack();
 			stack.push(0);
+			stack.pop();
+			expect(stack.toString()).toEqual('[');
+		});
+		it('returns a string representation of a stack', () => {
+			const stack = Stack();
+			stack.push(0);
 			expect(stack.toString()).toEqual('[0');
 		});
 		it('returns a string representation of a stack', () => {
@@ -131,6 +137,18 @@ describe('Stack', () => {
 			stack.push(4);
 			stack.push(5);
 			expect(stack.toString()).toEqual('[0,1,2,3,4,5');
+		});
+		it('returns a string representation of a stack', () => {
+			const stack = Stack();
+			stack.push(0);
+			stack.push(1);
+			stack.push(2);
+			stack.push(3);
+			stack.push(4);
+			stack.push(5);
+			stack.pop();
+			stack.pop();
+			expect(stack.toString()).toEqual('[0,1,2,3');
 		});
 	});
 });

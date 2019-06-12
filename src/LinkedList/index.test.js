@@ -1,5 +1,5 @@
 import { Nil, List } from '.';
-import { None } from '../Option';
+import { None, Some } from '../Option';
 
 describe('List', () => {
 	describe('Nil', () => {
@@ -35,6 +35,20 @@ describe('List', () => {
 			it('returns a new list with that new value', () => {
 				const newValue = 0;
 				expect(Nil.prepend(newValue)).toEqual(List(newValue));
+			});
+		});
+		describe('#removeAt', () => {
+			it('returns None and the list is unchanged', () => {
+				const l = Nil;
+				const result = l.removeAt(0);
+				expect(result).toBe(None);
+				expect(l).toBe(Nil);
+			});
+			it('returns None and the list is unchanged', () => {
+				const l = Nil;
+				const result = l.removeAt(1);
+				expect(result).toBe(None);
+				expect(l).toBe(Nil);
 			});
 		});
 		describe('#toString', () => {
@@ -93,6 +107,44 @@ describe('List', () => {
 			});
 			it('inserts a value at the head of the list', () => {
 				expect(List(1,2,3).prepend(0)).toEqual(List(0,1,2,3));
+			});
+		});
+		describe('#removeAt', () => {
+			it('returns None when index is less than 0', () => {
+				const l = List(0,1,2,3);
+				const result = l.removeAt(-1);
+				expect(result).toEqual(None);
+				expect(l).toEqual(List(0,1,2,3));
+			});
+			it('returns the element at index 0 and removes it from the list', () => {
+				const l = List(0,1,2,3);
+				const result = l.removeAt(0);
+				expect(result).toEqual(Some(0));
+				expect(l).toEqual(List(1,2,3));
+			});
+			it('returns the element at index 1 and removes it from the list', () => {
+				const l = List(0,1,2,3);
+				const result = l.removeAt(1);
+				expect(result).toEqual(Some(1));
+				expect(l).toEqual(List(0,2,3));
+			});
+			it('returns the element at index 2 and removes it from the list', () => {
+				const l = List(0,1,2,3);
+				const result = l.removeAt(2);
+				expect(result).toEqual(Some(2));
+				expect(l).toEqual(List(0,1,3));
+			});
+			it('returns the element at index 3 and removes it from the list', () => {
+				const l = List(0,1,2,3);
+				const result = l.removeAt(3);
+				expect(result).toEqual(Some(3));
+				expect(l).toEqual(List(0,1,2));
+			});
+			it('returns None at index > length of list', () => {
+				const l = List(0,1,2,3);
+				const result = l.removeAt(4);
+				expect(result).toEqual(None);
+				expect(l).toEqual(List(0,1,2,3));
 			});
 		});
 		describe('#toString', () => {

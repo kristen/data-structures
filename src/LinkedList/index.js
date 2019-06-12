@@ -26,6 +26,10 @@ class NilListClass {
 	prepend(value) {
 		return List(value);
 	}
+	// eslint-disable-next-line no-unused-vars
+	removeAt(_i) {
+		return None;
+	}
 }
 const nilToString = () => {
 	return 'Nil';
@@ -68,6 +72,17 @@ class ListClass {
 			return this;
 		}
 		return new ListClass(value, this);
+	}
+	removeAt(index) {
+		if (index < 0) return None;
+		let p = this;
+		for (let i = 0; i < index; i++) {
+			p = p.tail();
+		}
+		const element = p.headOption();
+		p._head = p.tail()._head;
+		p._tail = p.tail()._tail;
+		return element;
 	}
 }
 ListClass.prototype.toString = function listToString() {

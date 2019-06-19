@@ -28,6 +28,18 @@ describe('List', () => {
 				expect(Nil.tail()).toBe(Nil);
 			});
 		});
+		describe('#append', () => {
+			it('does not append when the given value is undefined', () => {
+				const value = undefined;
+				const l = Nil.append(value);
+				expect(l).toEqual(Nil);
+			});
+			it('returns the list with the value at the end', () => {
+				const value = 2;
+				const l = Nil.append(value);
+				expect(l).toEqual(List(value));
+			});
+		});
 		describe('#prepend', () => {
 			it('returns the list when the value is undefined', () => {
 				expect(Nil.prepend()).toBe(Nil);
@@ -99,6 +111,24 @@ describe('List', () => {
 			it('returns a new List with all elements except for the head', () => {
 				const list = List('value1', 'value2');
 				expect(list.tail()).toEqual(List('value2'));
+			});
+		});
+		describe('#append', () => {
+			it('does not append when the given value is undefiend', () => {
+				const l = List(1,2,3).append(undefined);
+				expect(l).toEqual(List(1,2,3));
+			});
+			it('adds value to end of list', () => {
+				const l = List().append(0);
+				expect(l).toEqual(List(0));
+			});
+			it('adds value to end of list', () => {
+				const l = List(1).append(0);
+				expect(l).toEqual(List(1,0));
+			});
+			it('adds value to end of list', () => {
+				const l = List(1).append(0).append(2);
+				expect(l).toEqual(List(1,0,2));
 			});
 		});
 		describe('#prepend', () => {

@@ -23,6 +23,9 @@ class NilListClass {
 	tail() {
 		return Nil;
 	}
+	append(value) {
+		return List(value);
+	}
 	prepend(value) {
 		return List(value);
 	}
@@ -66,6 +69,18 @@ class ListClass {
 	}
 	tail() {
 		return this._tail;
+	}
+	append(value) {
+		if (value === undefined) {
+			return this;
+		}
+		let p = this;
+		while(!p.tail().isEmpty()) {
+			p = p.tail();
+		}
+		const t = List(value);
+		p._tail = t;
+		return this;
 	}
 	prepend(value) {
 		if (value === undefined) {

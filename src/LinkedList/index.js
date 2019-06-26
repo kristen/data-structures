@@ -1,117 +1,85 @@
 import { Option, None } from '../Option';
 
-export class NilListError extends Error {
+class EmptyLinkedListError extends Error {
 	constructor(message) {
 		super(message);
-		this.name = 'NilListError';
+		this.name = 'EmptyLinkedListError';
 	}
 }
 
-class NilListClass {
-	isEmpty() {
-		return true;
+class Node {
+	constructor(value, next) {
+		this.value = value;
+		this.next = next;
 	}
-	nonEmpty() {
-		return !this.isEmpty();
+}
+
+export class LinkedList {
+	constructor() {
+		this.head = undefined;
+		this.tail = undefined;
+	}
+	isEmpty() {
+		return this.head === undefined;
 	}
 	head() {
-		throw new NilListError('Nil.head is not allowed');
+		if (this.head === undefined) {
+			throw new EmptyLinkedListError('head on empty list not allowed');
+		}
+		return this.head.value;
 	}
 	headOption() {
-		return None;
+		return Option.fromNullable(this.head.value);
 	}
-	tail() {
-		return Nil;
+	last() {
+		if (this.tail === undefined) {
+			throw new EmptyLinkedListError('tail on empty list not allowed');
+		}
+		return this.tail.value;
 	}
-	append(value) {
-		return List(value);
+	lastOption() {
+		return Option.fromNullable(this.tail.value);
 	}
 	prepend(value) {
-		return List(value);
-	}
-	// eslint-disable-next-line no-unused-vars
-	removeAt(_i) {
-		return None;
-	}
-}
-const nilToString = () => {
-	return 'Nil';
-};
-NilListClass.prototype.toString = nilToString;
-export const Nil = new NilListClass();
-
-const constructList = (items, acc) => {
-	const last = items[items.length - 1];
-	if (last === undefined) {
-		return acc;
-	}
-	const rest = items.slice(0, items.length - 1);
-	const tail = new ListClass(last, acc);
-	return constructList(rest, tail);
-};
-
-class ListClass {
-	constructor(head, tail) {
-		this._head = head;
-		this._tail = tail;
-	}
-	isEmpty() {
-		return false;
-	}
-	nonEmpty() {
-		return !this.isEmpty();
-	}
-	head() {
-		return this._head;
-	}
-	headOption() {
-		return Option.fromNullable(this._head);
-	}
-	tail() {
-		return this._tail;
-	}
-	append(value) {
-		if (value === undefined) {
-			return this;
+		const node = new Node(value, this.head);
+		if (this.head === undefined) {
+			this.tail = node;
 		}
-		let p = this;
-		while(!p.tail().isEmpty()) {
-			p = p.tail();
-		}
-		const t = List(value);
-		p._tail = t;
+		this.head = node;
 		return this;
 	}
-	prepend(value) {
-		if (value === undefined) {
-			return this;
+	append(value) {
+		const node = new Node(value);
+		if (this.tail) {
+			this.tail.next = node;
+			this.tail = node;
+		} else {
+			this.head = node;
+			this.tail = node;
 		}
-		return new ListClass(value, this);
+		return this;
 	}
 	removeAt(index) {
-		if (index < 0) return None;
-		let p = this;
-		for (let i = 0; i < index; i++) {
-			p = p.tail();
+		let prev = this.head;
+		let nodeToRemove = this.head;
+		for (let i = 0; i < index - 1; i++) {
+			if (prev.next) { // if there is no prev.next, then out of bounds
+				prev = prev.next;
+				nodeToRemove = nodeToRemove.next;
+			}
 		}
-		const element = p.headOption();
-		p._head = p.tail()._head;
-		p._tail = p.tail()._tail;
-		return element;
+		if (nodeToRemove.next) {
+			// iterate once more to be at the node to remove and leave prev one prev
+			nodeToRemove = nodeToRemove.next;
+			if (prev === nodeToRemove) {
+				// at head of list
+				this.head = nodeToRemove.next;
+			} else {
+				prev.next = nodeToRemove.next;
+			}
+			nodeToRemove.next = undefined;
+			return Option.fromNullable(nodeToRemove.value);
+		}
+		return None;
 	}
 }
-ListClass.prototype.toString = function listToString() {
-	const loop = (acc, hash, index, rest) => {
-		if (rest.headOption() === None) {
-			return acc;
-		} else if (hash.has(rest)) {
-			return acc.concat([`loop([${hash.get(rest)}])`]);
-		} else {
-			hash.set(rest, index);
-			return loop(acc.concat([rest.head()]), hash, index+1, rest.tail());
-		}
-	};
-	const listItems = loop([], new Map(), 0, this);
-	return `List(${listItems.join(',')})`;
-};
-export const List = (...items) => constructList(items, Nil);

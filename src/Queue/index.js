@@ -1,26 +1,19 @@
-import { List, Nil } from '../LinkedList';
+import { LinkedList } from '../LinkedList';
 
 class QueueClass {
 	constructor() {
-		this._start = Nil;
-		this._end = Nil;
+		this._start = new LinkedList();
 	}
 	isEmpty() {
 		return this._start.isEmpty();
 	}
 	add(value) {
-		const node = List(value);
-		if (this._start.isEmpty()) {
-			this._start = node;
-		} else {
-			this._end._tail = node;
-		}
-		this._end = node;
+		this._start.append(value);
 	}
 	remove() {
-		const value = this._start.headOption();
-		this._start = this._start.tail();
-		return value;
+		// const value = this._start.headOption();
+		// this._start = this._start.next;
+		return this._start.removeAt(0);
 	}
 	peek() {
 		return this._start.headOption();
